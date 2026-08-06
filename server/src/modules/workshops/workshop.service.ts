@@ -11,7 +11,7 @@ export class WorkshopService implements IWorkshopService {
 
   async getWorkshopById(id: string): Promise<WorkshopResponseDto> {
     const result = await this.databaseService.query(
-      'SELECT id, name, theme_color, created_at FROM workshops WHERE id = $1',
+      'SELECT id, name, theme_color, sms_enabled, whatsapp_enabled, created_at FROM workshops WHERE id = $1',
       [id],
     );
 
@@ -36,10 +36,12 @@ export class WorkshopService implements IWorkshopService {
 
     const newName = dto.name !== undefined ? dto.name : currentWorkshop.name;
     const newThemeColor = dto.themeColor !== undefined ? dto.themeColor : currentWorkshop.themeColor;
+    const newSmsEnabled = dto.smsEnabled !== undefined ? dto.smsEnabled : currentWorkshop.smsEnabled;
+    const newWhatsappEnabled = dto.whatsappEnabled !== undefined ? dto.whatsappEnabled : currentWorkshop.whatsappEnabled;
 
     const result = await this.databaseService.query(
-      'UPDATE workshops SET name = $1, theme_color = $2 WHERE id = $3 RETURNING id, name, theme_color, created_at',
-      [newName, newThemeColor, tenantId],
+      'UPDATE workshops SET name = $1, theme_color = $2, sms_enabled = $3, whatsapp_enabled = $4 WHERE id = $5 RETURNING id, name, theme_color, sms_enabled, whatsapp_enabled, created_at',
+      [newName, newThemeColor, newSmsEnabled, newWhatsappEnabled, tenantId],
     );
 
     return this.mapToDto(result.rows[0]);
@@ -57,6 +59,8 @@ export class WorkshopService implements IWorkshopService {
       id: row.id,
       name: row.name,
       themeColor: row.theme_color,
+      smsEnabled: row.sms_enabled,
+      whatsappEnabled: row.whatsapp_enabled,
       createdAt: row.created_at,
     };
   }

@@ -1,4 +1,5 @@
-import { IsString, IsOptional, MaxLength, IsIn } from 'class-validator';
+import { IsString, IsOptional, MaxLength, IsIn, IsNumber, Min } from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateJobDto {
   @IsOptional()
@@ -19,4 +20,10 @@ export class UpdateJobDto {
   @IsString()
   @IsIn(['waiting', 'in_progress', 'completed', 'delivered'], { message: 'Geçersiz durum' })
   status?: string;
+
+  @ApiPropertyOptional({ example: 1500.00 })
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  price?: number;
 }

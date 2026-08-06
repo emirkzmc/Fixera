@@ -1,10 +1,14 @@
-import { IsString, IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, MaxLength, IsUUID } from 'class-validator';
 
 export class CreateJobDto {
+  @IsOptional()
+  @IsUUID()
+  customerId?: string;
+
   @IsString()
-  @IsNotEmpty({ message: 'Müşteri adı boş olamaz' })
+  @IsOptional()
   @MaxLength(100)
-  customerName!: string;
+  customerName?: string;
 
   @IsString()
   @IsNotEmpty({ message: 'Araç/Cihaz tanımlayıcısı boş olamaz' })

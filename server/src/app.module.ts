@@ -8,6 +8,10 @@ import { UserModule } from './modules/users/user.module';
 import { WorkshopModule } from './modules/workshops/workshop.module';
 import { JobModule } from './modules/jobs/job.module';
 import { EventsModule } from './modules/events/events.module';
+import { CustomersModule } from './modules/customers/customer.module';
+import { FinancesModule } from './modules/finances/finances.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 import configuration from './config/configuration';
 
@@ -20,6 +24,10 @@ import configuration from './config/configuration';
     WorkshopModule,
     JobModule,
     EventsModule,
+    CustomersModule,
+    FinancesModule,
+    InventoryModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
