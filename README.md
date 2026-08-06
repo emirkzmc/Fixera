@@ -1,6 +1,6 @@
-# Tikir App
+# Tıkır App
 
-Tikir App, Next.js tabanlı bir frontend (client) ve NestJS tabanlı bir backend (server) içeren full-stack web uygulamasıdır. Proje, atölye veya çok kiracılı (multi-tenant) sistemlere uygun bir yetkilendirme (JWT) ve kullanıcı yönetimi altyapısına sahiptir.
+Tıkır App, Next.js tabanlı bir frontend (client) ve NestJS tabanlı bir backend (server) içeren full-stack web uygulamasıdır. Proje, atölye veya çok kiracılı (multi-tenant) sistemlere uygun bir yetkilendirme (JWT) ve kullanıcı yönetimi altyapısına sahiptir.
 
 ## Proje Yapısı
 
