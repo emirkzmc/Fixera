@@ -1,6 +1,6 @@
-# Tıkır App
+# Fixera
 
-Tıkır App, Next.js tabanlı bir frontend (client) ve NestJS tabanlı bir backend (server) içeren full-stack web uygulamasıdır. Proje, atölye veya çok kiracılı (multi-tenant) sistemlere uygun bir yetkilendirme (JWT) ve kullanıcı yönetimi altyapısına sahiptir.
+Fixera, Next.js tabanlı bir frontend (client) ve NestJS tabanlı bir backend (server) içeren full-stack web uygulamasıdır. Proje, atölye veya çok kiracılı (multi-tenant) sistemlere uygun bir yetkilendirme (JWT) ve kullanıcı yönetimi altyapısına sahiptir.
 
 ## Proje Yapısı
 
@@ -45,8 +45,8 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
-DATABASE_NAME=tikir_db
-DATABASE_URL=postgres://postgres:postgres@localhost:5432/tikir_db
+DATABASE_NAME=fixera_db
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/fixera_db
 JWT_SECRET=gizliAnahtariniz
 JWT_EXPIRES_IN=1d
 ```
