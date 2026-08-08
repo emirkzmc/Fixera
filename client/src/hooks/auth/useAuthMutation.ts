@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 import { authApi } from '@/api/authApi';
 import type { LoginRequest, RegisterRequest } from '@/domains/authDomains';
 import { authKeys } from '@/lib/query/keys/authKeys';
@@ -8,7 +9,11 @@ export function useLoginMutation() {
 
   return useMutation({
     mutationFn: (data: LoginRequest) => authApi.login(data),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      // Assuming data returns AuthResponse which has accessToken
+      if (data && data.accessToken) {
+        Cookies.set('authToken', data.accessToken, { expires: 7 }); // expires in 7 days
+      }
       queryClient.invalidateQueries({ queryKey: authKeys.me() });
     },
   });

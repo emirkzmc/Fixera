@@ -14,7 +14,7 @@ import { IEventsService } from './interfaces/events.service.interface';
 @Injectable()
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:3000', 'https://app.tikir.com'], 
+    origin: ['http://localhost:3000', 'https://app.fixera.com'], 
     credentials: true,
   },
 })

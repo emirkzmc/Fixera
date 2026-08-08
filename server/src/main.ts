@@ -8,6 +8,12 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // CORS ayarı (Frontend'den gelen isteklere izin ver)
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -17,8 +23,8 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Tıkır App API')
-    .setDescription('Tıkır App API Dokümantasyonu')
+    .setTitle('Fixera API')
+    .setDescription('Fixera API Dokümantasyonu')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

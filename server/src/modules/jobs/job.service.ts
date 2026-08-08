@@ -127,7 +127,7 @@ export class JobService implements IJobService {
       }
 
       if (phone) {
-        const message = `Sayın ${updatedJob.customerName || 'Müşterimiz'}, aracınızın durumu değişti: ${updatedJob.status}. Takip: app.tikir.com/t/${updatedJob.trackingCode}`;
+        const message = `Sayın ${updatedJob.customerName || 'Müşterimiz'}, aracınızın durumu değişti: ${updatedJob.status}. Takip: app.fixera.com/t/${updatedJob.trackingCode}`;
         
         if (workshop.sms_enabled) {
           await this.notificationsService.sendSms(phone, message);

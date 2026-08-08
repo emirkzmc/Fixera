@@ -1,13 +1,13 @@
-name: tikir-backend
+name: fixera-backend
 services:
   postgres:
-    image: postgres:16-alpine
-    container_name: tikir_postgres
+    image: postgres:15-alpine
+    container_name: fixera_postgres
     restart: always
     environment:
-      POSTGRES_USER: tikir_user
-      POSTGRES_PASSWORD: tikir_password
-      POSTGRES_DB: tikir_db
+      POSTGRES_USER: fixera_user
+      POSTGRES_PASSWORD: fixera_password
+      POSTGRES_DB: fixera_db
     ports:
       - "5432:5432"
     volumes:
