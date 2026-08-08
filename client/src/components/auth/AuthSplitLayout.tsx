@@ -17,7 +17,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full max-w-[480px] bg-white rounded-2xl shadow-xl shadow-orange-900/5 p-8  m-auto"
+          className="w-full max-w-120 bg-white rounded-2xl shadow-xl shadow-orange-900/5 p-8  m-auto"
         >
           {children}
         </motion.div>

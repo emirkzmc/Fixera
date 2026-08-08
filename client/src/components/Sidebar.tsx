@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   LayoutGrid,
@@ -43,7 +42,7 @@ export function Sidebar() {
   const [activeItem, setActiveItem] = useState<string>("home");
 
   return (
-    <aside className="h-full w-[280px] rounded-3xl bg-gradient-to-br from-[#FF9A5A]/55 via-[#FF7A45] to-[#E8482C] flex flex-col py-6 flex-shrink-0">
+    <aside className="h-full w-70 rounded-3xl bg-linear-to-br from-[#FF9A5A]/55 via-[#FF7A45] to-[#E8482C] flex flex-col py-6 shrink-0">
       {/* Logo Area */}
       <div className="flex items-center justify-center px-8 mb-6">
         <img src="/logos/logo.png" alt="Logo" width={170} height={40} className="object-contain" />
@@ -78,7 +77,7 @@ export function Sidebar() {
                       >
                         {/* Top Concave Curve */}
                         <div 
-                          className="absolute -top-[24px] left-0 w-[24px] h-[24px] pointer-events-none"
+                          className="absolute -top-6 left-0 w-6 h-6 pointer-events-none"
                           style={{ background: 'radial-gradient(circle at 100% 0%, transparent 24px, white 24.5px)' }} 
                         />
                       </motion.div>

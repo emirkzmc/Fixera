@@ -112,7 +112,7 @@ export function QuickActionDropdown({
                   onClick={item.onClick}
                   className="group flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-orange-50 hover:text-orange-600 focus:bg-orange-50 focus:text-orange-600 focus:outline-none w-full text-left"
                 >
-                  <span className="text-gray-400 group-hover:text-orange-500 transition-colors flex-shrink-0">
+                  <span className="text-gray-400 group-hover:text-orange-500 transition-colors shrink-0">
                     {item.icon}
                   </span>
                   {item.label}
