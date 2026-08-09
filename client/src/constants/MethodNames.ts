@@ -7,7 +7,7 @@ export enum AuthApiMethod {
 
 export enum CustomerApiMethod {
   GET_ALL = '/customers',
-  CREATE = '/customers/create',
+  CREATE = '/customers',
   GET_BY_ID = '/customers/:id',
   UPDATE = '/customers/:id',
 }
@@ -15,20 +15,20 @@ export enum CustomerApiMethod {
 export enum FinanceApiMethod {
   GET_SUMMARY = '/finances/summary',
   GET_PAYMENTS = '/finances/payments',
-  CREATE_PAYMENT = '/finances/payments/create',
+  CREATE_PAYMENT = '/finances/payments',
   UPDATE_PAYMENT = '/finances/payments/:id',
 }
 
 export enum InventoryApiMethod {
   GET_ALL = '/inventory',
-  CREATE = '/inventory/create',
+  CREATE = '/inventory',
   UPDATE = '/inventory/:id',
   USE_FOR_JOB = '/inventory/use-for-job/:jobId',
 }
 
 export enum JobApiMethod {
   GET_ALL = '/jobs',
-  CREATE = '/jobs/create',
+  CREATE = '/jobs',
   GET_BY_ID = '/jobs/:id',
   UPDATE = '/jobs/:id',
   DELETE = '/jobs/:id',

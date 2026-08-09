@@ -17,7 +17,7 @@ apiClient.interceptors.request.use(async (config) => {
       const cookieStore = await cookies();
       token = cookieStore.get('authToken')?.value;
     } catch (error) {
-      console.warn('Failed to retrieve token from server cookies', error);
+      // Failed to retrieve token from server cookies, silently ignore
     }
   }
 

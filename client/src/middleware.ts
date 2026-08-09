@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
 
   // Define public routes that don't require authentication
   const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/register');
-  const isPublicRoute = isAuthRoute || pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico');
+  const isPublicRoute = isAuthRoute || pathname.startsWith('/track') || pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico');
 
   if (!token && !isPublicRoute) {
     // If not authenticated and trying to access a protected route, redirect to login

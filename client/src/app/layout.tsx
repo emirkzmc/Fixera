@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "../components/Sidebar";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -15,18 +14,22 @@ export const metadata: Metadata = {
 
 import { Toaster } from 'react-hot-toast';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="tr"
       className={`${plusJakartaSans.variable} font-sans h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="h-screen bg-[#F8F9FA] text-slate-900 overflow-x-hidden">
-        <ReactQueryProvider>
-          {children}
-          <Toaster position="top-right" />
-        </ReactQueryProvider>
+      <body className="h-screen bg-[var(--background)] text-[var(--text-primary)] overflow-x-hidden">
+        <ThemeProvider>
+          <ReactQueryProvider>
+            {children}
+            <Toaster position="top-right" />
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
