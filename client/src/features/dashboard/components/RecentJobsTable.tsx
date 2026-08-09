@@ -8,9 +8,10 @@ import { JobStatusBadge } from "@/features/jobs/components/JobStatusBadge";
 
 interface RecentJobsTableProps {
   jobs: Job[];
+  onRowClick?: (jobId: string) => void;
 }
 
-export function RecentJobsTable({ jobs }: RecentJobsTableProps) {
+export function RecentJobsTable({ jobs, onRowClick }: RecentJobsTableProps) {
   const recentJobs = jobs.slice(0, 5);
 
   const formatPrice = (price: number) => {
@@ -56,7 +57,11 @@ export function RecentJobsTable({ jobs }: RecentJobsTableProps) {
             </thead>
             <tbody className="divide-y divide-[var(--border-color)]">
               {recentJobs.map((job) => (
-                <tr key={job.id} className="hover:bg-[var(--card-bg-hover)] transition-colors">
+                <tr 
+                  key={job.id} 
+                  className={`hover:bg-[var(--card-bg-hover)] transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
+                  onClick={() => onRowClick?.(job.id)}
+                >
                   <td className="py-3.5 font-mono font-bold text-[var(--accent)]">{job.trackingCode}</td>
                   <td className="py-3.5 font-medium">{job.customerName || "Bilinmeyen Müşteri"}</td>
                   <td className="py-3.5 text-[var(--text-secondary)]">{job.itemIdentifier}</td>

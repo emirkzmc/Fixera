@@ -1,4 +1,3 @@
 export interface INotificationsService {
-  sendSms(phoneNumber: string, message: string): Promise<boolean>;
-  sendWhatsApp(phoneNumber: string, message: string): Promise<boolean>;
+  sendEmail(to: string, subject: string, html: string): Promise<boolean>;
 }

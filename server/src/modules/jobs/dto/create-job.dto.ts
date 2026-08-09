@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, MaxLength, IsUUID } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, MaxLength, IsUUID, IsDateString, IsNumber, Min } from 'class-validator';
 
 export class CreateJobDto {
   @IsOptional()
@@ -18,4 +18,13 @@ export class CreateJobDto {
   @IsOptional()
   @IsString()
   issueDescription?: string;
+
+  @IsOptional()
+  @IsDateString()
+  estimatedDeliveryDate?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  price?: number;
 }

@@ -7,8 +7,11 @@ import { useGetJobs } from "@/hooks/job/useJob";
 import { Button } from "@/components/ui/Button";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { JobsTable } from "@/features/jobs/components/JobsTable";
 import { CreateJobModal } from "@/features/jobs/components/CreateJobModal";
+import { JobDetailModal } from "@/features/jobs/components/JobDetailModal";
+import type { Job } from "@/domains/jobDomains";
 
 type FilterStatus = "all" | "waiting" | "in_progress" | "completed" | "delivered";
 
@@ -24,6 +27,7 @@ export default function JobsPage() {
   const { data: jobs = [], isLoading } = useGetJobs();
   const [activeTab, setActiveTab] = useState<FilterStatus>("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
   const filteredJobs = jobs.filter((job) => {
     if (activeTab === "all") return true;
@@ -35,24 +39,23 @@ export default function JobsPage() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="flex flex-col gap-6"
+      className="p-6 max-w-7xl mx-auto space-y-6 flex flex-col"
     >
       {/* Top Header Section */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <p className="text-sm text-[var(--text-secondary)]">
-            Atölyenizdeki tüm servis ve iş emri süreçlerini buradan yönetebilirsiniz.
-          </p>
-        </div>
-        <Button
-          variant="primary"
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center justify-center gap-2"
-        >
-          <Plus size={18} />
-          <span>Yeni İş Emri Başlat</span>
-        </Button>
-      </div>
+      <PageHeader
+        title="İş Emirleri"
+        description="Atölyenizdeki tüm servis ve iş emri süreçlerini buradan yönetebilirsiniz."
+        action={
+          <Button
+            variant="primary"
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center justify-center gap-2"
+          >
+            <Plus size={18} />
+            <span>Yeni İş Emri Başlat</span>
+          </Button>
+        }
+      />
 
       {/* Tabs Filter */}
       <div className="flex border-b border-[var(--border-color)] overflow-x-auto scrollbar-hide gap-2">
@@ -97,12 +100,20 @@ export default function JobsPage() {
           />
         ) : (
           <div className="flex-1 flex flex-col">
-            <JobsTable jobs={filteredJobs} />
+            <JobsTable 
+              jobs={filteredJobs} 
+              onRowClick={(job) => setSelectedJobId(job.id)}
+            />
           </div>
         )}
       </div>
 
       <CreateJobModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <JobDetailModal 
+        isOpen={!!selectedJobId} 
+        onClose={() => setSelectedJobId(null)} 
+        jobId={selectedJobId} 
+      />
     </motion.div>
   );
 }

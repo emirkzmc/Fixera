@@ -22,7 +22,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={`font-medium py-3.5 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${variantStyles} ${widthStyles} ${className}`}
+        className={`cursor-pointer font-medium py-3.5 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${variantStyles} ${widthStyles} ${className}`}
         {...props}
       >
         {children}

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Clock, Layers, TrendingUp } from "lucide-react";
 import { useGetJobs } from "@/hooks/job/useJob";
@@ -11,11 +11,13 @@ import { HeroScene } from "@/features/dashboard/components/HeroScene";
 import { StatCard } from "@/features/dashboard/components/StatCard";
 import { RecentJobsTable } from "@/features/dashboard/components/RecentJobsTable";
 import { FinanceSummaryWidget } from "@/features/dashboard/components/FinanceSummaryWidget";
+import { JobDetailModal } from "@/features/jobs/components/JobDetailModal";
 
 export default function DashboardHome() {
   const { data: jobs = [], isLoading: isJobsLoading } = useGetJobs();
   const { data: financeSummary, isLoading: isFinanceLoading } = useGetFinanceSummary();
   const { data: inventory = [], isLoading: isInventoryLoading } = useGetInventory();
+  const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
 
   const isLoading = isJobsLoading || isFinanceLoading || isInventoryLoading;
 
@@ -91,13 +93,22 @@ export default function DashboardHome() {
       {/* Secondary Dashboard Section */}
       <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         {/* Son işler tablosu */}
-        <RecentJobsTable jobs={jobs} />
+        <RecentJobsTable 
+          jobs={jobs} 
+          onRowClick={(jobId) => setSelectedJobId(jobId)} 
+        />
 
         {/* Finansal Grafik ve Detay widget */}
         <div className="w-full lg:w-[400px]">
           <FinanceSummaryWidget summary={defaultSummary} />
         </div>
       </div>
+      
+      <JobDetailModal 
+        isOpen={!!selectedJobId}
+        onClose={() => setSelectedJobId(null)}
+        jobId={selectedJobId}
+      />
     </motion.div>
   );
 }

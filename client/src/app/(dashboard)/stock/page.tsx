@@ -6,13 +6,19 @@ import { Package, Plus } from "lucide-react";
 import { useGetInventory } from "@/hooks/inventory/useInventory";
 import { InventoryTable } from "@/features/inventory/components/InventoryTable";
 import { CreateInventoryModal } from "@/features/inventory/components/CreateInventoryModal";
+import { EditInventoryModal } from "@/features/inventory/components/EditInventoryModal";
+import { UseInventoryModal } from "@/features/inventory/components/UseInventoryModal";
 import { Button } from "@/components/ui/Button";
+import type { InventoryItem } from "@/domains/inventoryDomains";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export default function StockPage() {
   const { data: inventory = [], isLoading, error } = useGetInventory();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState<InventoryItem | null>(null);
+  const [usingItem, setUsingItem] = useState<InventoryItem | null>(null);
 
   const criticalCount = useMemo(() => {
     return inventory.filter(item => item.stockQuantity <= item.criticalLevel).length;
@@ -23,26 +29,25 @@ export default function StockPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="p-6 max-w-7xl mx-auto space-y-6"
+      className="p-6 max-w-7xl mx-auto space-y-6 flex flex-col"
     >
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Stok Yönetimi</h1>
-          <p className="text-[var(--text-secondary)] text-sm">
-            Atölyenizdeki tüm yedek parça ve malzemeleri buradan takip edebilirsiniz.
-          </p>
-          {criticalCount > 0 && (
-            <div className="mt-3 inline-flex items-center px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-red-500 mr-2 animate-pulse"></span>
-              {criticalCount} parça kritik seviyenin altında!
-            </div>
-          )}
-        </div>
-        <Button variant="primary" onClick={() => setIsModalOpen(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          Parça Ekle
-        </Button>
-      </div>
+      <PageHeader 
+        title="Stok Yönetimi" 
+        description="Atölyenizdeki tüm yedek parça ve malzemeleri buradan takip edebilirsiniz."
+        action={
+          <Button className="flex items-center justify-center" variant="primary" onClick={() => setIsModalOpen(true)}>
+            <Plus className="w-4 h-4 mr-2" />
+            Parça Ekle
+          </Button>
+        }
+      >
+        {criticalCount > 0 && (
+          <div className="mt-3 inline-flex items-center px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-red-500 mr-2 animate-pulse"></span>
+            {criticalCount} parça kritik seviyenin altında!
+          </div>
+        )}
+      </PageHeader>
 
       <div className="bg-[var(--card-bg)] rounded-2xl shadow-sm border border-[var(--border-color)] overflow-hidden">
         {isLoading ? (
@@ -62,13 +67,29 @@ export default function StockPage() {
             />
           </div>
         ) : (
-          <InventoryTable items={inventory} />
+          <InventoryTable 
+            items={inventory} 
+            onEditClick={(item) => setEditingItem(item)}
+            onUseClick={(item) => setUsingItem(item)}
+          />
         )}
       </div>
 
       <CreateInventoryModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
+      />
+      
+      <EditInventoryModal
+        isOpen={!!editingItem}
+        onClose={() => setEditingItem(null)}
+        item={editingItem}
+      />
+      
+      <UseInventoryModal
+        isOpen={!!usingItem}
+        onClose={() => setUsingItem(null)}
+        item={usingItem}
       />
     </motion.div>
   );

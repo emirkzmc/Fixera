@@ -6,14 +6,17 @@ import { Search, Users, Plus } from "lucide-react";
 import { useGetCustomers } from "@/hooks/customer/useCustomer";
 import { CustomersTable } from "@/features/customers/components/CustomersTable";
 import { CreateCustomerModal } from "@/features/customers/components/CreateCustomerModal";
+import { EditCustomerModal } from "@/features/customers/components/EditCustomerModal";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export default function CustomersPage() {
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingCustomer, setEditingCustomer] = useState<any>(null);
   
   const { data: customers = [], isLoading } = useGetCustomers();
 
@@ -29,20 +32,18 @@ export default function CustomersPage() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-6"
+      className="p-6 max-w-7xl mx-auto space-y-6 flex flex-col"
     >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Müşteriler</h1>
-          <p className="text-sm text-[var(--text-secondary)] mt-1">
-            Atölyenize kayıtlı tüm müşterileri görüntüleyin ve yönetin.
-          </p>
-        </div>
-        <Button onClick={() => setIsModalOpen(true)} variant="primary">
-          <Plus className="mr-2 h-4 w-4" />
-          Yeni Müşteri
-        </Button>
-      </div>
+      <PageHeader 
+        title="Müşteriler"
+        description="Atölyenize kayıtlı tüm müşterileri görüntüleyin ve yönetin."
+        action={
+          <Button className="flex items-center justify-center" onClick={() => setIsModalOpen(true)} variant="primary">
+            <Plus className="mr-2 h-4 w-4" />
+            Yeni Müşteri
+          </Button>
+        }
+      />
 
       <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6 shadow-sm">
         <div className="mb-6 max-w-md">
@@ -66,7 +67,10 @@ export default function CustomersPage() {
             <LoadingSpinner size="lg" />
           </div>
         ) : filteredCustomers.length > 0 ? (
-          <CustomersTable customers={filteredCustomers} />
+          <CustomersTable 
+            customers={filteredCustomers} 
+            onEditClick={(customer) => setEditingCustomer(customer)}
+          />
         ) : (
           <EmptyState
             icon={Users}
@@ -88,6 +92,12 @@ export default function CustomersPage() {
       <CreateCustomerModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+      />
+      
+      <EditCustomerModal
+        isOpen={!!editingCustomer}
+        onClose={() => setEditingCustomer(null)}
+        customer={editingCustomer}
       />
     </motion.div>
   );

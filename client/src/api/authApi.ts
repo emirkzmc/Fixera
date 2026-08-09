@@ -7,7 +7,7 @@ export const authApi = {
   register: (data: RegisterRequest) => apiClient.post<any, AuthResponse>(AuthApiMethod.REGISTER, data),
   getMe: () => apiClient.get<any, AuthUser>(AuthApiMethod.GET_ME),
   updateProfilePhoto: (formData: FormData) => 
-    apiClient.put<any, AuthUser>(AuthApiMethod.UPDATE_PROFILE_PHOTO, formData, {
+    apiClient.post<any, AuthUser>(AuthApiMethod.UPDATE_PROFILE_PHOTO, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     }),
 };

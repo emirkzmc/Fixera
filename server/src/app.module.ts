@@ -12,12 +12,18 @@ import { CustomersModule } from './modules/customers/customer.module';
 import { FinancesModule } from './modules/finances/finances.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 import configuration from './config/configuration';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/',
+    }),
     DatabaseModule,
     AuthModule,
     UserModule,

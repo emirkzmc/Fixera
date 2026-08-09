@@ -23,12 +23,14 @@ export function CreateJobModal({ isOpen, onClose }: CreateJobModalProps) {
   const [customerName, setCustomerName] = useState("");
   const [itemIdentifier, setItemIdentifier] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleClose = () => {
     setCustomerId("");
     setCustomerName("");
     setItemIdentifier("");
     setIssueDescription("");
+    setPrice("");
     onClose();
   };
 
@@ -51,6 +53,7 @@ export function CreateJobModal({ isOpen, onClose }: CreateJobModalProps) {
         customerName: resolvedCustomerName || undefined,
         itemIdentifier,
         issueDescription: issueDescription || undefined,
+        price: price ? parseFloat(price) : undefined,
       },
       {
         onSuccess: () => {
@@ -102,6 +105,19 @@ export function CreateJobModal({ isOpen, onClose }: CreateJobModalProps) {
             value={itemIdentifier}
             onChange={(e) => setItemIdentifier(e.target.value)}
             required
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="price">Tahmini Tutar / Fiyat (₺) (İsteğe Bağlı)</Label>
+          <Input
+            id="price"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Örn: 1500"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
 

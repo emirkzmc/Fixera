@@ -16,15 +16,16 @@ export class CustomersService implements ICustomersService {
       workshopId: row.workshop_id,
       fullName: row.full_name,
       phone: row.phone,
+      email: row.email,
       createdAt: row.created_at,
     };
   }
 
   async createCustomer(user: AuthenticatedUser, dto: CreateCustomerDto): Promise<CustomerResponseDto> {
     const result = await this.databaseService.query(
-      `INSERT INTO customers (workshop_id, full_name, phone) 
-       VALUES ($1, $2, $3) RETURNING *`,
-      [user.tenantId, dto.fullName, dto.phone || null]
+      `INSERT INTO customers (workshop_id, full_name, phone, email) 
+       VALUES ($1, $2, $3, $4) RETURNING *`,
+      [user.tenantId, dto.fullName, dto.phone || null, dto.email || null]
     );
     return this.mapToDto(result.rows[0]);
   }
@@ -63,6 +64,10 @@ export class CustomersService implements ICustomersService {
       updates.push(`phone = $${paramIndex++}`);
       values.push(dto.phone);
     }
+    if (dto.email !== undefined) {
+      updates.push(`email = $${paramIndex++}`);
+      values.push(dto.email);
+    }
 
     if (updates.length === 0) {
       return this.getCustomerById(user, customerId);
@@ -72,6 +77,16 @@ export class CustomersService implements ICustomersService {
     values.push(customerId, user.tenantId);
 
     const result = await this.databaseService.query(query, values);
-    return this.mapToDto(result.rows[0]);
+    const updatedCustomer = this.mapToDto(result.rows[0]);
+
+    // Eğer isim değiştiyse jobs tablosundaki customer_name sütununu da güncelle
+    if (dto.fullName !== undefined) {
+      await this.databaseService.query(
+        `UPDATE jobs SET customer_name = $1 WHERE customer_id = $2 AND workshop_id = $3`,
+        [dto.fullName, customerId, user.tenantId]
+      );
+    }
+
+    return updatedCustomer;
   }
 }

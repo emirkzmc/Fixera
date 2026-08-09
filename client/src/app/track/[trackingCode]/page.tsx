@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { jobApi } from "@/api/jobApi";
 import type { Job } from "@/domains/jobDomains";
-import { Package, Smartphone, Calendar, AlertCircle } from "lucide-react";
+import { Package, Smartphone, Calendar, AlertCircle, Clock, CreditCard } from "lucide-react";
 
 export default function TrackJobPage() {
   const { trackingCode } = useParams<{ trackingCode: string }>();
@@ -30,29 +30,29 @@ export default function TrackJobPage() {
 
   const getStatusDisplay = (status: string) => {
     switch (status) {
-      case "waiting": return { text: "Bekliyor", color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/20" };
-      case "in_progress": return { text: "Devam Ediyor", color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20" };
-      case "completed": return { text: "Tamamlandı", color: "text-green-500", bg: "bg-green-500/10", border: "border-green-500/20" };
-      case "delivered": return { text: "Teslim Edildi", color: "text-gray-500", bg: "bg-gray-500/10", border: "border-gray-500/20" };
-      default: return { text: status, color: "text-gray-500", bg: "bg-gray-500/10", border: "border-gray-500/20" };
+      case "waiting": return { text: "Bekliyor", color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" };
+      case "in_progress": return { text: "Devam Ediyor", color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-200" };
+      case "completed": return { text: "Tamamlandı", color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" };
+      case "delivered": return { text: "Teslim Edildi", color: "text-slate-600", bg: "bg-slate-100", border: "border-slate-200" };
+      default: return { text: status, color: "text-slate-600", bg: "bg-slate-100", border: "border-slate-200" };
     }
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[var(--background)]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--accent)]"></div>
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-orange-500"></div>
       </div>
     );
   }
 
   if (error || !job) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[var(--background)] p-6">
-        <div className="max-w-md w-full bg-[var(--card-bg)] p-8 rounded-3xl border border-[var(--border-color)] shadow-2xl text-center">
-          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Bulunamadı</h2>
-          <p className="text-[var(--text-secondary)]">{error}</p>
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+        <div className="max-w-md w-full bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
+          <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-3" />
+          <h2 className="text-xl font-bold text-slate-800 mb-1">Bulunamadı</h2>
+          <p className="text-sm text-slate-500">{error}</p>
         </div>
       </div>
     );
@@ -61,49 +61,74 @@ export default function TrackJobPage() {
   const statusConfig = getStatusDisplay(job.status);
 
   return (
-    <div className="min-h-screen bg-[var(--background)] py-12 px-6 flex justify-center items-start">
-      <div className="max-w-2xl w-full bg-[var(--card-bg)] rounded-3xl border border-[var(--border-color)] shadow-2xl overflow-hidden">
-        {/* Header */}
-        <div className="bg-[var(--accent)]/10 px-8 py-10 border-b border-[var(--accent)]/20 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/5 to-transparent pointer-events-none" />
-          <Package className="w-16 h-16 text-[var(--accent)] mx-auto mb-4 relative z-10" />
-          <h1 className="text-3xl font-extrabold text-[var(--text-primary)] relative z-10 mb-2">Cihaz Takip</h1>
-          <p className="text-[var(--text-secondary)] font-mono font-medium text-lg relative z-10">
-            KOD: <span className="text-[var(--accent)]">{job.trackingCode}</span>
+    <div className="min-h-screen bg-slate-50 py-12 px-4 flex justify-center items-start font-sans">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-slate-100">
+        {/* Header with gradient */}
+        <div className="bg-gradient-to-br from-orange-50 to-white px-6 py-8 border-b border-orange-100/50 text-center">
+          <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+            <Package className="w-6 h-6 text-orange-600" />
+          </div>
+          <h1 className="text-xl font-bold text-slate-800 mb-1">Cihaz Takip</h1>
+          <p className="text-sm font-medium text-slate-500 uppercase tracking-wider">
+            {job.trackingCode}
           </p>
         </div>
 
         {/* Content */}
-        <div className="p-8">
-          <div className={`rounded-2xl p-6 border ${statusConfig.border} ${statusConfig.bg} text-center mb-8`}>
-            <h3 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">Güncel Durum</h3>
-            <p className={`text-3xl font-bold ${statusConfig.color}`}>{statusConfig.text}</p>
+        <div className="p-6">
+          <div className={`rounded-xl p-4 border ${statusConfig.border} ${statusConfig.bg} text-center mb-6`}>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Durum</p>
+            <p className={`text-xl font-bold ${statusConfig.color}`}>{statusConfig.text}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-[var(--background)] p-6 rounded-2xl border border-[var(--border-color)]">
-              <div className="flex items-center text-[var(--text-secondary)] mb-3">
-                <Smartphone className="w-5 h-5 mr-2" />
-                <span className="font-medium text-sm">Cihaz / Ürün</span>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between py-3 border-b border-slate-100">
+              <div className="flex items-center text-slate-500">
+                <Smartphone className="w-4 h-4 mr-2" />
+                <span className="text-sm">Cihaz / Ürün</span>
               </div>
-              <p className="text-lg font-semibold text-[var(--text-primary)]">{job.itemIdentifier}</p>
+              <span className="text-sm font-semibold text-slate-800">{job.itemIdentifier}</span>
             </div>
 
-            <div className="bg-[var(--background)] p-6 rounded-2xl border border-[var(--border-color)]">
-              <div className="flex items-center text-[var(--text-secondary)] mb-3">
-                <Calendar className="w-5 h-5 mr-2" />
-                <span className="font-medium text-sm">Kayıt Tarihi</span>
+            <div className="flex items-center justify-between py-3 border-b border-slate-100">
+              <div className="flex items-center text-slate-500">
+                <Calendar className="w-4 h-4 mr-2" />
+                <span className="text-sm">Kayıt Tarihi</span>
               </div>
-              <p className="text-lg font-semibold text-[var(--text-primary)]">
-                {new Date(job.createdAt).toLocaleDateString("tr-TR", { year: 'numeric', month: 'long', day: 'numeric' })}
-              </p>
+              <span className="text-sm font-semibold text-slate-800">
+                {new Date(job.createdAt).toLocaleDateString("tr-TR")}
+              </span>
             </div>
+
+            {job.estimatedDeliveryDate && (
+              <div className="flex items-center justify-between py-3 border-b border-slate-100">
+                <div className="flex items-center text-orange-600">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span className="text-sm font-medium">Tahmini Teslim</span>
+                </div>
+                <span className="text-sm font-bold text-orange-600">
+                  {new Date(job.estimatedDeliveryDate).toLocaleDateString("tr-TR")}
+                </span>
+              </div>
+            )}
+
+            {job.price !== undefined && job.price > 0 && (
+              <div className="flex items-center justify-between py-3 border-b border-slate-100">
+                <div className="flex items-center text-slate-500">
+                  <CreditCard className="w-4 h-4 mr-2" />
+                  <span className="text-sm">Tutar</span>
+                </div>
+                <span className="text-sm font-bold text-slate-800">
+                  {new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY" }).format(job.price)}
+                </span>
+              </div>
+            )}
           </div>
 
           {job.issueDescription && (
-            <div className="mt-6 bg-[var(--background)] p-6 rounded-2xl border border-[var(--border-color)]">
-              <h3 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">Şikayet / Açıklama</h3>
-              <p className="text-[var(--text-primary)]">{job.issueDescription}</p>
+            <div className="mt-6 bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm text-slate-600">
+              <span className="font-semibold text-slate-700 block mb-1">Açıklama:</span>
+              {job.issueDescription}
             </div>
           )}
         </div>

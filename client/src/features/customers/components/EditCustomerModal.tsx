@@ -1,56 +1,72 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Modal } from "@/components/ui/Modal";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { useCreateCustomerMutation } from "@/hooks/customer/useCustomerMutation";
+import { useUpdateCustomerMutation } from "@/hooks/customer/useCustomerMutation";
+import type { Customer } from "@/domains/customerDomains";
 
-interface CreateCustomerModalProps {
+interface EditCustomerModalProps {
   isOpen: boolean;
   onClose: () => void;
+  customer: Customer | null;
 }
 
-export function CreateCustomerModal({ isOpen, onClose }: CreateCustomerModalProps) {
+export function EditCustomerModal({ isOpen, onClose, customer }: EditCustomerModalProps) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  const { mutate: createCustomer, isPending } = useCreateCustomerMutation();
+  const { mutate: updateCustomer, isPending } = useUpdateCustomerMutation();
+
+  useEffect(() => {
+    if (customer && isOpen) {
+      setFullName(customer.fullName || "");
+      setPhone(customer.phone || "");
+      setEmail(customer.email || "");
+      setError("");
+    }
+  }, [customer, isOpen]);
 
   const handleClose = () => {
-    setFullName("");
-    setPhone("");
-    setEmail("");
-    setError("");
     onClose();
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!customer) return;
+
     if (!fullName.trim()) {
       setError("Ad soyad zorunludur.");
       return;
     }
 
-    createCustomer(
-      { fullName, phone: phone || undefined, email: email || undefined },
+    updateCustomer(
+      { 
+        id: customer.id, 
+        data: { 
+          fullName, 
+          phone: phone || undefined, 
+          email: email || undefined 
+        } 
+      },
       {
         onSuccess: () => {
-          toast.success("Müşteri başarıyla eklendi");
+          toast.success("Müşteri başarıyla güncellendi");
           handleClose();
         },
         onError: () => {
-          toast.error("Müşteri eklenirken bir hata oluştu");
+          toast.error("Müşteri güncellenirken bir hata oluştu");
         },
       }
     );
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="Yeni Müşteri" maxWidth="md">
+    <Modal isOpen={isOpen} onClose={handleClose} title="Müşteri Düzenle" maxWidth="md">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
           <div>
@@ -92,9 +108,6 @@ export function CreateCustomerModal({ isOpen, onClose }: CreateCustomerModalProp
               placeholder="Örn: musteri@gmail.com"
               maxLength={255}
             />
-            <p className="mt-1.5 text-xs text-[var(--text-secondary)] italic">
-              * İşlem durumlarını anında öğrenmek için e-posta adresi yazmanızı öneririz.
-            </p>
           </div>
         </div>
 
@@ -102,8 +115,8 @@ export function CreateCustomerModal({ isOpen, onClose }: CreateCustomerModalProp
           <Button type="button" variant="outline" onClick={handleClose}>
             İptal
           </Button>
-          <Button type="submit" variant="primary" disabled={isPending}>
-            {isPending ? "Ekleniyor..." : "Müşteri Ekle"}
+          <Button type="submit" variant="primary" disabled={isPending || !customer}>
+            {isPending ? "Güncelleniyor..." : "Kaydet"}
           </Button>
         </div>
       </form>

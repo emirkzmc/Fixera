@@ -2,9 +2,11 @@
 
 import { Payment } from '@/domains/financeDomains';
 import { Badge } from '@/components/ui/Badge';
+import { Pencil } from 'lucide-react';
 
 interface PaymentsTableProps {
   payments: Payment[];
+  onEditClick?: (payment: Payment) => void;
 }
 
 const formatTRY = (amount: number) => {
@@ -22,12 +24,13 @@ const formatDate = (dateString: string) => {
   }).format(new Date(dateString));
 };
 
-export function PaymentsTable({ payments }: PaymentsTableProps) {
+export function PaymentsTable({ payments, onEditClick }: PaymentsTableProps) {
   return (
     <div className="w-full overflow-x-auto">
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="border-b border-[var(--border-color)] text-sm font-medium text-[var(--text-secondary)]">
+            <th className="p-4 whitespace-nowrap w-12 text-center"></th>
             <th className="p-4 whitespace-nowrap">İş ID</th>
             <th className="p-4 whitespace-nowrap">Tutar</th>
             <th className="p-4 whitespace-nowrap">Durum</th>
@@ -40,6 +43,20 @@ export function PaymentsTable({ payments }: PaymentsTableProps) {
               key={payment.id}
               className="hover:bg-[var(--background)]/50 transition-colors"
             >
+              <td className="p-4 text-center">
+                {onEditClick && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onEditClick(payment);
+                    }}
+                    className="p-1.5 text-slate-400 hover:text-[var(--accent)] hover:bg-orange-50 rounded-md transition-colors"
+                    title="Düzenle"
+                  >
+                    <Pencil size={16} />
+                  </button>
+                )}
+              </td>
               <td className="p-4 text-sm text-[var(--text-primary)] font-medium">
                 #{payment.jobId.slice(-6)}
               </td>

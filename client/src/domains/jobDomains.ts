@@ -8,6 +8,7 @@ export interface Job {
   status: string;
   price: number;
   trackingCode: string;
+  estimatedDeliveryDate?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -17,6 +18,8 @@ export interface CreateJobRequest {
   customerName?: string;
   itemIdentifier: string;
   issueDescription?: string;
+  price?: number;
+  estimatedDeliveryDate?: string;
 }
 
 export interface UpdateJobRequest {
@@ -25,4 +28,5 @@ export interface UpdateJobRequest {
   issueDescription?: string;
   status?: string;
   price?: number;
+  estimatedDeliveryDate?: string;
 }

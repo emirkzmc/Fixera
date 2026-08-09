@@ -13,6 +13,9 @@ export class CustomerResponseDto {
   @ApiProperty({ example: '05554443322', required: false })
   phone?: string;
 
+  @ApiProperty({ example: 'ahmet@example.com', required: false })
+  email?: string;
+
   @ApiProperty()
   createdAt!: Date;
 }

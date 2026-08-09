@@ -10,9 +10,13 @@ import { Button } from '@/components/ui/Button';
 import { FinanceOverviewCards } from '@/features/finance/components/FinanceOverviewCards';
 import { PaymentsTable } from '@/features/finance/components/PaymentsTable';
 import { CreatePaymentModal } from '@/features/finance/components/CreatePaymentModal';
+import { EditPaymentModal } from '@/features/finance/components/EditPaymentModal';
+import { PageHeader } from '@/components/ui/PageHeader';
+import type { Payment } from '@/domains/financeDomains';
 
 export default function FinancePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingPayment, setEditingPayment] = useState<Payment | null>(null);
   const { data: summary, isLoading: isLoadingSummary } = useGetFinanceSummary();
   const { data: payments = [], isLoading: isLoadingPayments } = useGetPayments();
 
@@ -28,18 +32,18 @@ export default function FinancePage() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-6 max-w-7xl mx-auto p-4 md:p-6"
+      className="p-6 max-w-7xl mx-auto space-y-6 flex flex-col"
     >
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Finans</h1>
-          <p className="text-sm text-[var(--text-secondary)] mt-1">Gelir ve ödemelerinizi takip edin</p>
-        </div>
-        <Button variant="primary" onClick={() => setIsModalOpen(true)} className="flex items-center gap-2">
-          <Plus className="w-4 h-4" />
-          Ödeme Al
-        </Button>
-      </div>
+      <PageHeader 
+        title="Finans"
+        description="Gelir ve ödemelerinizi takip edin"
+        action={
+          <Button variant="primary" onClick={() => setIsModalOpen(true)} className="flex items-center gap-2">
+            <Plus className="w-4 h-4" />
+            Ödeme Al
+          </Button>
+        }
+      />
 
       {summary && <FinanceOverviewCards summary={summary} />}
 
@@ -59,11 +63,20 @@ export default function FinancePage() {
             />
           </div>
         ) : (
-          <PaymentsTable payments={payments} />
+          <PaymentsTable 
+            payments={payments} 
+            onEditClick={(payment) => setEditingPayment(payment)}
+          />
         )}
       </div>
 
       <CreatePaymentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      
+      <EditPaymentModal 
+        isOpen={!!editingPayment} 
+        onClose={() => setEditingPayment(null)} 
+        payment={editingPayment} 
+      />
     </motion.div>
   );
 }

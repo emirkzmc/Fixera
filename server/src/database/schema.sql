@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS customers (
     workshop_id UUID NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     phone VARCHAR(20),
+    email VARCHAR(255),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     FOREIGN KEY (workshop_id) REFERENCES workshops(id) ON DELETE CASCADE
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     status VARCHAR(50) DEFAULT 'waiting', 
     price DECIMAL(10,2) DEFAULT 0.00,
     tracking_code VARCHAR(20) UNIQUE NOT NULL, 
+    estimated_delivery_date TIMESTAMP,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 

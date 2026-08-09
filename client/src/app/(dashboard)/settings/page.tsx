@@ -6,6 +6,7 @@ import { ProfileSettings } from "@/features/settings/components/ProfileSettings"
 import { WorkshopSettings } from "@/features/settings/components/WorkshopSettings";
 import { NotificationSettings } from "@/features/settings/components/NotificationSettings";
 import { AppearanceSettings } from "@/features/settings/components/AppearanceSettings";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 interface SettingsSectionProps {
   title: string;
@@ -33,13 +34,12 @@ export default function SettingsPage() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="flex flex-col gap-6 max-w-4xl"
+      className="p-6 max-w-7xl mx-auto space-y-6 flex flex-col"
     >
-      <div className="flex flex-col gap-1">
-        <p className="text-sm text-[var(--text-secondary)]">
-          Kullanıcı profilinizi, atölye ayarlarınızı ve sistem bildirim tercihlerini buradan yönetin.
-        </p>
-      </div>
+      <PageHeader 
+        title="Ayarlar"
+        description="Kullanıcı profilinizi, atölye ayarlarınızı ve sistem bildirim tercihlerini buradan yönetin."
+      />
 
       <SettingsSection
         title="Profil Bilgileri"

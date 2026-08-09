@@ -2,7 +2,7 @@ export enum AuthApiMethod {
   LOGIN = '/auth/login',
   REGISTER = '/auth/register',
   GET_ME = '/auth/me',
-  UPDATE_PROFILE_PHOTO = '/auth/profile-photo',
+  UPDATE_PROFILE_PHOTO = '/auth/upload-profile-photo',
 }
 
 export enum CustomerApiMethod {

@@ -8,6 +8,7 @@ export class JobResponseDto {
   status!: string;
   price!: number;
   trackingCode!: string;
+  estimatedDeliveryDate?: Date;
   createdAt!: Date;
   updatedAt!: Date;
 }

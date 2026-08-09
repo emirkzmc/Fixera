@@ -2,13 +2,16 @@
 
 import React from "react";
 import { InventoryItem } from "@/domains/inventoryDomains";
+import { Pencil, Wrench } from "lucide-react";
 
 interface InventoryTableProps {
   items: InventoryItem[];
   onRowClick?: (item: InventoryItem) => void;
+  onEditClick?: (item: InventoryItem) => void;
+  onUseClick?: (item: InventoryItem) => void;
 }
 
-export const InventoryTable: React.FC<InventoryTableProps> = ({ items, onRowClick }) => {
+export const InventoryTable: React.FC<InventoryTableProps> = ({ items, onRowClick, onEditClick, onUseClick }) => {
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("tr-TR", { style: "currency", currency: "TRY" }).format(value);
   };
@@ -18,6 +21,7 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ items, onRowClic
       <table className="w-full text-left border-collapse whitespace-nowrap">
         <thead>
           <tr className="border-b border-[var(--border-color)] text-[var(--text-secondary)] text-sm">
+            <th className="py-4 px-6 w-20 text-center">İşlem</th>
             <th className="py-4 px-6 font-medium">Parça Adı</th>
             <th className="py-4 px-6 font-medium text-right">Stok Miktarı</th>
             <th className="py-4 px-6 font-medium text-right">Kritik Seviye</th>
@@ -35,6 +39,32 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ items, onRowClic
                   onRowClick ? "cursor-pointer hover:bg-[var(--card-bg)]/80" : ""
                 } ${isCritical ? "bg-red-500/10 hover:bg-red-500/20" : ""}`}
               >
+                <td className="py-4 px-6 flex items-center justify-center gap-2">
+                  {onEditClick && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEditClick(item);
+                      }}
+                      className="p-1.5 text-slate-400 hover:text-[var(--accent)] hover:bg-[var(--accent)]/10 rounded-md transition-colors"
+                      title="Düzenle"
+                    >
+                      <Pencil size={16} />
+                    </button>
+                  )}
+                  {onUseClick && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onUseClick(item);
+                      }}
+                      className="p-1.5 text-slate-400 hover:text-[var(--info)] hover:bg-[var(--info)]/10 rounded-md transition-colors"
+                      title="İş Emrinde Kullan"
+                    >
+                      <Wrench size={16} />
+                    </button>
+                  )}
+                </td>
                 <td className="py-4 px-6 font-medium flex items-center">
                   {item.itemName}
                   {isCritical && (
