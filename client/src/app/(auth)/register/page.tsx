@@ -145,7 +145,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={() => setIsTermsOpen(true)}
-                  className="cursor-pointer underline hover:text-orange-500 transition-colors focus:outline-none"
+                  className="cursor-pointer underline hover:text-[var(--accent)] transition-colors focus:outline-none"
                 >
                   Şartlar ve Koşulları
                 </button>{" "}
@@ -157,7 +157,7 @@ export default function RegisterPage() {
             <motion.div variants={itemVariants} className="text-center pt-4">
               <p className="text-sm text-slate-500">
                 Zaten bir hesabınız var mı?{" "}
-                <Link href="/login" className="font-semibold text-orange-500 hover:text-orange-600 transition-colors">
+                <Link href="/login" className="font-semibold text-[var(--accent)] hover:text-orange-600 transition-colors">
                   Giriş yap
                 </Link>
               </p>

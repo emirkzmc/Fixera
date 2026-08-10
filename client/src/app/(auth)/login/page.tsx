@@ -123,7 +123,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setIsTermsOpen(true)}
-                  className="underline hover:text-orange-500 transition-colors focus:outline-none"
+                  className="underline hover:text-[var(--accent)] transition-colors focus:outline-none"
                 >
                   Şartlar ve Koşulları
                 </button>{" "}
@@ -135,7 +135,7 @@ export default function LoginPage() {
             <motion.div variants={itemVariants} className="text-center pt-4">
               <p className="text-sm text-slate-500">
                 Henüz bir hesabınız yok mu?{" "}
-                <Link href="/register" className="font-semibold text-orange-500 hover:text-orange-600 transition-colors">
+                <Link href="/register" className="font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
                   Kayıt ol
                 </Link>
               </p>

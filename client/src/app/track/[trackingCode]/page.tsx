@@ -41,7 +41,7 @@ export default function TrackJobPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-orange-500"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[var(--accent)]"></div>
       </div>
     );
   }
@@ -64,9 +64,9 @@ export default function TrackJobPage() {
     <div className="min-h-screen bg-slate-50 py-12 px-4 flex justify-center items-start font-sans">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-slate-100">
         {/* Header with gradient */}
-        <div className="bg-linear-to-br from-orange-50 to-white px-6 py-8 border-b border-orange-100/50 text-center">
-          <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-            <Package className="w-6 h-6 text-orange-600" />
+        <div className="bg-linear-to-br from-[var(--accent-light)] to-white px-6 py-8 border-b border-[var(--accent-light)] text-center">
+          <div className="w-12 h-12 bg-[var(--accent-light)] rounded-full flex items-center justify-center mx-auto mb-3">
+            <Package className="w-6 h-6 text-[var(--accent)]" />
           </div>
           <h1 className="text-xl font-bold text-slate-800 mb-1">Cihaz Takip</h1>
           <p className="text-sm font-medium text-slate-500 uppercase tracking-wider">
@@ -102,11 +102,11 @@ export default function TrackJobPage() {
 
             {job.estimatedDeliveryDate && (
               <div className="flex items-center justify-between py-3 border-b border-slate-100">
-                <div className="flex items-center text-orange-600">
+                <div className="flex items-center text-[var(--accent)]">
                   <Clock className="w-4 h-4 mr-2" />
                   <span className="text-sm font-medium">Tahmini Teslim</span>
                 </div>
-                <span className="text-sm font-bold text-orange-600">
+                <span className="text-sm font-bold text-[var(--accent)]">
                   {new Date(job.estimatedDeliveryDate).toLocaleDateString("tr-TR")}
                 </span>
               </div>

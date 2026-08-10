@@ -41,7 +41,7 @@ export function CustomersTable({ customers, onRowClick, onEditClick }: Customers
                       e.stopPropagation();
                       onEditClick(customer);
                     }}
-                    className="p-1.5 text-slate-400 hover:text-[var(--accent)] hover:bg-orange-50 rounded-md transition-colors"
+                    className="p-1.5 text-slate-400 hover:text-[var(--accent)] hover:bg-[var(--accent-light)] rounded-md transition-colors"
                     title="Düzenle"
                   >
                     <Pencil size={16} />
