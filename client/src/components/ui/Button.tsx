@@ -10,7 +10,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     
     let variantStyles = "";
     if (variant === "primary") {
-      variantStyles = "bg-[#C65D1A] hover:bg-[#B34F12] text-white focus:ring-[#C65D1A]";
+      variantStyles = "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--accent-foreground,white)] focus:ring-[var(--accent)]";
     } else if (variant === "secondary") {
       variantStyles = "bg-slate-100 hover:bg-slate-200 text-slate-900 focus:ring-slate-500";
     } else if (variant === "outline") {

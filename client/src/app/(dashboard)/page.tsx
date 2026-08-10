@@ -7,11 +7,11 @@ import { useGetJobs } from "@/hooks/job/useJob";
 import { useGetFinanceSummary } from "@/hooks/finance/useFinance";
 import { useGetInventory } from "@/hooks/inventory/useInventory";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
-import { HeroScene } from "@/features/dashboard/components/HeroScene";
-import { StatCard } from "@/features/dashboard/components/StatCard";
-import { RecentJobsTable } from "@/features/dashboard/components/RecentJobsTable";
-import { FinanceSummaryWidget } from "@/features/dashboard/components/FinanceSummaryWidget";
-import { JobDetailModal } from "@/features/jobs/components/JobDetailModal";
+import { HeroScene } from "@/components/dashboard/components/HeroScene";
+import { StatCard } from "@/components/dashboard/components/StatCard";
+import { RecentJobsTable } from "@/components/dashboard/components/RecentJobsTable";
+import { FinanceSummaryWidget } from "@/components/dashboard/components/FinanceSummaryWidget";
+import { JobDetailModal } from "@/components/jobs/components/JobDetailModal";
 
 export default function DashboardHome() {
   const { data: jobs = [], isLoading: isJobsLoading } = useGetJobs();
@@ -23,7 +23,7 @@ export default function DashboardHome() {
 
   if (isLoading) {
     return (
-      <div className="min-h-[500px] flex items-center justify-center">
+      <div className="min-h-125 flex items-center justify-center">
         <LoadingSpinner size="lg" />
       </div>
     );
@@ -99,7 +99,7 @@ export default function DashboardHome() {
         />
 
         {/* Finansal Grafik ve Detay widget */}
-        <div className="w-full lg:w-[400px]">
+        <div className="w-full lg:w-100">
           <FinanceSummaryWidget summary={defaultSummary} />
         </div>
       </div>

@@ -23,13 +23,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${plusJakartaSans.variable} font-sans h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="h-screen bg-[var(--background)] text-[var(--text-primary)] overflow-x-hidden">
-        <ThemeProvider>
-          <ReactQueryProvider>
+      <body className="h-screen bg-background text-(--text-primary) overflow-x-hidden">
+        <ReactQueryProvider>
+          <ThemeProvider>
             {children}
             <Toaster position="top-right" />
-          </ReactQueryProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

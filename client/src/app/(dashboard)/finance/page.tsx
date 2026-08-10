@@ -7,10 +7,10 @@ import { useGetFinanceSummary, useGetPayments } from '@/hooks/finance/useFinance
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Button } from '@/components/ui/Button';
-import { FinanceOverviewCards } from '@/features/finance/components/FinanceOverviewCards';
-import { PaymentsTable } from '@/features/finance/components/PaymentsTable';
-import { CreatePaymentModal } from '@/features/finance/components/CreatePaymentModal';
-import { EditPaymentModal } from '@/features/finance/components/EditPaymentModal';
+import { FinanceOverviewCards } from '@/components/finance/components/FinanceOverviewCards';
+import { PaymentsTable } from '@/components/finance/components/PaymentsTable';
+import { CreatePaymentModal } from '@/components/finance/components/CreatePaymentModal';
+import { EditPaymentModal } from '@/components/finance/components/EditPaymentModal';
 import { PageHeader } from '@/components/ui/PageHeader';
 import type { Payment } from '@/domains/financeDomains';
 

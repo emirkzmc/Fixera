@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Briefcase } from "lucide-react";
 import type { Job } from "@/domains/jobDomains";
-import { JobStatusBadge } from "@/features/jobs/components/JobStatusBadge";
+import { JobStatusBadge } from "@/components/jobs/components/JobStatusBadge";
 
 interface RecentJobsTableProps {
   jobs: Job[];

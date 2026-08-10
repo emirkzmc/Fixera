@@ -35,7 +35,7 @@ export function useUseForJobMutation() {
       inventoryApi.useForJob(jobId, data),
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: inventoryKeys.lists() });
-      queryClient.invalidateQueries({ queryKey: inventoryKeys.detail(variables.data.itemId) });
+      queryClient.invalidateQueries({ queryKey: inventoryKeys.detail(variables.data.inventoryId) });
     },
   });
 }

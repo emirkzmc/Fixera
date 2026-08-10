@@ -4,11 +4,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
-import { useTheme } from "@/hooks/useTheme";
+import { useGetMyWorkshop } from "@/hooks/workshop/useWorkshop";
 
 function RotatingMesh() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const { theme } = useTheme();
+  const { data: workshop } = useGetMyWorkshop();
 
   // Slow constant rotation
   useFrame((state) => {
@@ -18,8 +18,7 @@ function RotatingMesh() {
     }
   });
 
-  const isDark = theme === "dark";
-  const distortColor = isDark ? "#FF6B00" : "#E65000";
+  const distortColor = workshop?.themeColor || "#E65000";
 
   return (
     <mesh ref={meshRef} scale={1.5} position={[2.5, 0, 0]}>

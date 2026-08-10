@@ -35,9 +35,11 @@ export const UseInventoryModal: React.FC<UseInventoryModalProps> = ({ isOpen, on
 
     try {
       await useForJob({
-        itemId: item.id,
         jobId,
-        quantity
+        data: {
+          inventoryId: item.id,
+          quantity
+        }
       });
       toast.success("Parça iş emrinde kullanıldı");
       handleClose();

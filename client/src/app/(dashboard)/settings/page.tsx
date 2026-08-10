@@ -2,10 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ProfileSettings } from "@/features/settings/components/ProfileSettings";
-import { WorkshopSettings } from "@/features/settings/components/WorkshopSettings";
-import { NotificationSettings } from "@/features/settings/components/NotificationSettings";
-import { AppearanceSettings } from "@/features/settings/components/AppearanceSettings";
+import { ProfileSettings } from "@/components/settings/components/ProfileSettings";
+import { WorkshopSettings } from "@/components/settings/components/WorkshopSettings";
+
 import { PageHeader } from "@/components/ui/PageHeader";
 
 interface SettingsSectionProps {
@@ -48,25 +47,13 @@ export default function SettingsPage() {
         <ProfileSettings />
       </SettingsSection>
 
-      <SettingsSection
-        title="Görünüm Ayarları"
-        description="Uygulama arayüzü tercihleri ve tema."
-      >
-        <AppearanceSettings />
-      </SettingsSection>
+
 
       <SettingsSection
         title="Atölye Ayarları"
         description="Atölye adı ve sistem genelinde uygulanacak marka tema rengi."
       >
         <WorkshopSettings />
-      </SettingsSection>
-
-      <SettingsSection
-        title="Bildirim Ayarları"
-        description="İş emri güncellemelerinde müşterilere yapılacak otomatik bilgilendirme kanalları."
-      >
-        <NotificationSettings />
       </SettingsSection>
     </motion.div>
   );

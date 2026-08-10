@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/Button";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { JobsTable } from "@/features/jobs/components/JobsTable";
-import { CreateJobModal } from "@/features/jobs/components/CreateJobModal";
-import { JobDetailModal } from "@/features/jobs/components/JobDetailModal";
+import { JobsTable } from "@/components/jobs/components/JobsTable";
+import { CreateJobModal } from "@/components/jobs/components/CreateJobModal";
+import { JobDetailModal } from "@/components/jobs/components/JobDetailModal";
 import type { Job } from "@/domains/jobDomains";
 
 type FilterStatus = "all" | "waiting" | "in_progress" | "completed" | "delivered";

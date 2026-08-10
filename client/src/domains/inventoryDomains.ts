@@ -18,6 +18,6 @@ export interface CreateInventoryItemRequest {
 export interface UpdateInventoryItemRequest extends Partial<CreateInventoryItemRequest> {}
 
 export interface UseInventoryRequest {
-  itemId: string;
-  quantityUsed: number;
+  inventoryId: string;
+  quantity: number;
 }

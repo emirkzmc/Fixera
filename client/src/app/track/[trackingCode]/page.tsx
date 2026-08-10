@@ -64,7 +64,7 @@ export default function TrackJobPage() {
     <div className="min-h-screen bg-slate-50 py-12 px-4 flex justify-center items-start font-sans">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-slate-100">
         {/* Header with gradient */}
-        <div className="bg-gradient-to-br from-orange-50 to-white px-6 py-8 border-b border-orange-100/50 text-center">
+        <div className="bg-linear-to-br from-orange-50 to-white px-6 py-8 border-b border-orange-100/50 text-center">
           <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
             <Package className="w-6 h-6 text-orange-600" />
           </div>

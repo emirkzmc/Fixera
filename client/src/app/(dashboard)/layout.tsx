@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { Header } from "@/components/shared/Header";
-import { QuickActionModals } from "@/features/quick-actions/components/QuickActionModals";
+import { QuickActionModals } from "@/components/quick-actions/components/QuickActionModals";
 import { usePathname } from "next/navigation";
 
 type ModalType = "newJob" | "newCustomer" | "addStock" | "quickPayment" | null;
