@@ -10,11 +10,15 @@ function RotatingMesh() {
   const meshRef = useRef<THREE.Mesh>(null);
   const { data: workshop } = useGetMyWorkshop();
 
+  const rotationRef = useRef({ x: 0, y: 0 });
+
   // Slow constant rotation
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.15;
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+      rotationRef.current.x += delta * 0.15;
+      rotationRef.current.y += delta * 0.2;
+      meshRef.current.rotation.x = rotationRef.current.x;
+      meshRef.current.rotation.y = rotationRef.current.y;
     }
   });
 

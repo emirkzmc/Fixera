@@ -74,7 +74,6 @@ export const EditInventoryModal: React.FC<EditInventoryModalProps> = ({ isOpen, 
           <div className="space-y-1.5">
             <Label>Stok Miktarı</Label>
             <Input
-              type="number"
               value={stockQuantity}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setStockQuantity(Number(e.target.value))}
               min={0}
@@ -84,7 +83,6 @@ export const EditInventoryModal: React.FC<EditInventoryModalProps> = ({ isOpen, 
           <div className="space-y-1.5">
             <Label>Kritik Seviye</Label>
             <Input
-              type="number"
               value={criticalLevel}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCriticalLevel(Number(e.target.value))}
               min={0}
@@ -95,7 +93,6 @@ export const EditInventoryModal: React.FC<EditInventoryModalProps> = ({ isOpen, 
         <div className="space-y-1.5">
           <Label>Birim Fiyat (₺)</Label>
           <Input
-            type="number"
             step="0.01"
             value={price}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrice(Number(e.target.value))}

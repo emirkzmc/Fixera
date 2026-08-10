@@ -71,7 +71,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
             alt="Fixera Logo"
             width={180}
             height={60}
-            className="object-contain object-right"
+            className="object-contain object-right w-auto h-auto"
             unoptimized
           />
         </div>

@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -71,7 +72,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     <div className="h-full w-[280px] rounded-r-3xl md:rounded-3xl bg-linear-to-br from-[var(--sidebar-from)] via-[var(--sidebar-via)] to-[var(--sidebar-to)] flex flex-col py-6 shadow-2xl md:shadow-none">
       {/* Logo Area */}
       <div className="flex items-center justify-between px-8 mb-6">
-        <img src="/logos/logo.png" alt="Logo" width={170} height={40} className="object-contain" />
+        <Image src="/logos/logo.png" alt="Logo" width={170} height={40} className="object-contain w-auto h-auto" priority />
         {/* Mobile Close Button */}
         <button 
           onClick={onClose}
