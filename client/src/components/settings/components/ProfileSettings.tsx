@@ -3,15 +3,17 @@
 import React, { useRef } from "react";
 import { toast } from "react-hot-toast";
 import { useGetMe } from "@/hooks/auth/useAuth";
-import { useUpdateProfilePhotoMutation } from "@/hooks/auth/useAuthMutation";
+import { useUpdateProfilePhotoMutation, useDeleteProfilePhotoMutation } from "@/hooks/auth/useAuthMutation";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { Trash2 } from "lucide-react";
 
 export function ProfileSettings() {
   const { data: user, isLoading } = useGetMe();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { mutate: updatePhoto, isPending: isUploading } = useUpdateProfilePhotoMutation();
+  const { mutate: deletePhoto, isPending: isDeleting } = useDeleteProfilePhotoMutation();
 
   if (isLoading) {
     return <LoadingSpinner size="md" />;
@@ -49,6 +51,17 @@ export function ProfileSettings() {
     });
   };
 
+  const handleDeletePhoto = () => {
+    deletePhoto(undefined, {
+      onSuccess: () => {
+        toast.success("Profil fotoğrafı silindi");
+      },
+      onError: () => {
+        toast.error("Fotoğraf silinirken bir hata oluştu");
+      }
+    });
+  };
+
   return (
     <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
       {/* Avatar Display */}
@@ -81,6 +94,16 @@ export function ProfileSettings() {
         <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase">
           Kullanıcı Profili
         </span>
+        {user.profilePhoto && (
+          <button
+            onClick={handleDeletePhoto}
+            disabled={isDeleting}
+            className="flex items-center gap-2 mt-2 px-3 py-1.5 text-xs font-medium text-red-500 hover:text-white hover:bg-red-500 rounded-md transition-colors cursor-pointer"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+            {isDeleting ? "Siliniyor..." : "Fotoğrafı Sil"}
+          </button>
+        )}
       </div>
 
       {/* Info Display Fields */}

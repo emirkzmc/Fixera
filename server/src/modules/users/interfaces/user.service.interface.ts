@@ -16,4 +16,8 @@ export interface IUserService {
     tenantId: string,
     dto: UpdateUserProfilePhotoDto,
   ): Promise<MeResponseDto>;
+  deleteProfilePhoto(
+    userId: string,
+    tenantId: string,
+  ): Promise<MeResponseDto>;
 }

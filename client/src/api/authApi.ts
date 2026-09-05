@@ -10,4 +10,5 @@ export const authApi = {
     apiClient.post<any, AuthUser>(AuthApiMethod.UPDATE_PROFILE_PHOTO, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     }),
+  deleteProfilePhoto: () => apiClient.delete<any, AuthUser>(AuthApiMethod.DELETE_PROFILE_PHOTO),
 };

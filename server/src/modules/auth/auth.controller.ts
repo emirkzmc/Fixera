@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, UseGuards, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, UseGuards, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -45,6 +45,14 @@ export class AuthController {
     @Body() dto: UpdateUserProfilePhotoDto,
   ) {
     return this.authService.updateProfilePhoto(user, dto);
+  }
+
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Kullanıcının profil fotoğrafını sil' })
+  @UseGuards(JwtAuthGuard)
+  @Delete('profile-photo')
+  async deleteProfilePhoto(@CurrentUser() user: AuthenticatedUser) {
+    return this.authService.deleteProfilePhoto(user);
   }
 
   @ApiBearerAuth()

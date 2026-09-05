@@ -17,7 +17,7 @@ export function StatCard({
   title,
   value,
   description,
-  accentClass = "text-[var(--accent)] bg-[var(--accent-light)]",
+  accentClass = "text-[var(--accent)]",
 }: StatCardProps) {
   return (
     <motion.div
@@ -38,8 +38,8 @@ export function StatCard({
         )}
       </div>
 
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${accentClass} shrink-0 ml-4`}>
-        <Icon size={22} />
+      <div className={`flex items-center justify-center ${accentClass} shrink-0 ml-4`}>
+        <Icon size={26} />
       </div>
     </motion.div>
   );

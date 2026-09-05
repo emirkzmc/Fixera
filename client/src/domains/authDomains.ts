@@ -15,6 +15,7 @@ export interface AuthUser {
   fullName: string;
   email: string;
   workshopId: string;
+  profilePhoto?: string;
 }
 
 export interface AuthResponse {

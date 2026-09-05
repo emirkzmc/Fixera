@@ -43,8 +43,8 @@ export function FinanceOverviewCards({ summary }: FinanceOverviewCardsProps) {
       className="grid grid-cols-1 md:grid-cols-3 gap-6"
     >
       <motion.div variants={cardVariants} className="rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] shadow-sm p-6 flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-          <TrendingUp className="w-6 h-6 text-emerald-500" />
+        <div className="flex items-center justify-center shrink-0">
+          <TrendingUp className="w-7 h-7 text-emerald-500" />
         </div>
         <div>
           <p className="text-sm text-[var(--text-secondary)] font-medium">Toplam Ciro</p>
@@ -53,8 +53,8 @@ export function FinanceOverviewCards({ summary }: FinanceOverviewCardsProps) {
       </motion.div>
 
       <motion.div variants={cardVariants} className="rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] shadow-sm p-6 flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
-          <Clock className="w-6 h-6 text-amber-500" />
+        <div className="flex items-center justify-center shrink-0">
+          <Clock className="w-7 h-7 text-amber-500" />
         </div>
         <div>
           <p className="text-sm text-[var(--text-secondary)] font-medium">Bekleyen Gelir</p>
@@ -63,8 +63,8 @@ export function FinanceOverviewCards({ summary }: FinanceOverviewCardsProps) {
       </motion.div>
 
       <motion.div variants={cardVariants} className="rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] shadow-sm p-6 flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
-          <Briefcase className="w-6 h-6 text-blue-500" />
+        <div className="flex items-center justify-center shrink-0">
+          <Briefcase className="w-7 h-7 text-blue-500" />
         </div>
         <div>
           <p className="text-sm text-[var(--text-secondary)] font-medium">Toplam İş</p>

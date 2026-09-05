@@ -85,6 +85,12 @@ export class AuthService implements IAuthService {
     return this.userService.updateProfilePhoto(userId, tenantId, dto);
   }
 
+  async deleteProfilePhoto(authUser: AuthenticatedUser): Promise<MeResponseDto> {
+    const userId = this.resolveUserId(authUser);
+    const tenantId = this.resolveTenantId(authUser);
+    return this.userService.deleteProfilePhoto(userId, tenantId);
+  }
+
   private resolveUserId(authUser: AuthenticatedUser): string {
     if (!authUser.userId) {
       throw new UnauthorizedException('Kullanıcı oturumu çözümlenemedi');

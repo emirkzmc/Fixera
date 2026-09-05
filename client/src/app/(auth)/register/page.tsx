@@ -145,7 +145,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={() => setIsTermsOpen(true)}
-                  className="cursor-pointer underline hover:text-[var(--accent)] transition-colors focus:outline-none"
+                  className="cursor-pointer underline hover:text-[var(--accent)] transition-colors focus:outline-none cursor-pointer"
                 >
                   Şartlar ve Koşulları
                 </button>{" "}

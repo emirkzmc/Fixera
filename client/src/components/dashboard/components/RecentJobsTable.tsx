@@ -37,8 +37,8 @@ export function RecentJobsTable({ jobs, onRowClick }: RecentJobsTableProps) {
 
       {recentJobs.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-8 text-center flex-1">
-          <div className="w-12 h-12 rounded-xl bg-[var(--border-color-light)] flex items-center justify-center mb-3">
-            <Briefcase size={20} className="text-[var(--text-tertiary)]" />
+          <div className="flex items-center justify-center mb-3">
+            <Briefcase size={28} className="text-[var(--text-tertiary)]" />
           </div>
           <p className="text-sm font-semibold text-[var(--text-primary)]">Kayıt Bulunmuyor</p>
           <p className="text-xs text-[var(--text-secondary)] mt-1">Aktif iş emriniz bulunmamaktadır.</p>

@@ -14,5 +14,6 @@ export function useGetMyWorkshop() {
   return useQuery({
     queryKey: workshopKeys.me(),
     queryFn: () => workshopApi.getMe(),
+    meta: { suppressErrorToast: true },
   });
 }

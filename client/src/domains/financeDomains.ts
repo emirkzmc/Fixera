@@ -11,6 +11,7 @@ export interface Payment {
   amount: number;
   status: string;
   createdAt: string;
+  customerName?: string;
 }
 
 export interface CreatePaymentRequest {

@@ -31,7 +31,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
             src="/login-img.png"
             alt="Fixera Background"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center pointer-events-none"
             priority
             unoptimized
           />
@@ -58,7 +58,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
             src="/removed-img.png"
             alt="Fixera Foreground"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center pointer-events-none"
             priority
             unoptimized
           />
@@ -71,7 +71,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
             alt="Fixera Logo"
             width={180}
             height={60}
-            className="object-contain object-right w-auto h-auto"
+            className="object-contain object-right w-45 h-auto pointer-events-none"
             unoptimized
           />
         </div>

@@ -10,4 +10,5 @@ export interface IAuthService {
   login(loginDto: LoginDto): Promise<AuthResponse>;
   getMe(authUser: AuthenticatedUser): Promise<MeResponseDto>;
   updateProfilePhoto(authUser: AuthenticatedUser, dto: UpdateUserProfilePhotoDto): Promise<MeResponseDto>;
+  deleteProfilePhoto(authUser: AuthenticatedUser): Promise<MeResponseDto>;
 }

@@ -95,4 +95,28 @@ export class UserService implements IUserService {
       profilePhoto: updatedUser.profile_photo,
     };
   }
+
+  async deleteProfilePhoto(
+    userId: string,
+    tenantId: string,
+  ): Promise<MeResponseDto> {
+    const user = await this.findById(userId);
+    if (!user || user.workshop_id !== tenantId) {
+      throw new NotFoundException('Kullanıcı bulunamadı');
+    }
+
+    const result = await this.databaseService.query(
+      'UPDATE users SET profile_photo = NULL WHERE id = $1 RETURNING id, full_name, email, workshop_id, profile_photo',
+      [userId],
+    );
+
+    const updatedUser = result.rows[0];
+    return {
+      id: updatedUser.id,
+      fullName: updatedUser.full_name,
+      email: updatedUser.email,
+      workshopId: updatedUser.workshop_id,
+      profilePhoto: updatedUser.profile_photo,
+    };
+  }
 }

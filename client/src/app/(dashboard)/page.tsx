@@ -61,21 +61,21 @@ export default function DashboardHome() {
           title="Toplam İş Emri"
           value={jobs.length}
           description="Sisteme kayıtlı tüm işler"
-          accentClass="text-[var(--info)] bg-[var(--info-light)]"
+          accentClass="text-[var(--info)]"
         />
         <StatCard
           icon={Clock}
           title="Aktif İşler"
           value={activeJobs}
           description="Bekleyen veya yapım aşamasında"
-          accentClass="text-[var(--warning)] bg-[var(--warning-light)]"
+          accentClass="text-[var(--warning)]"
         />
         <StatCard
           icon={TrendingUp}
           title="Toplam Gelir"
           value={formatPrice(defaultSummary.totalRevenue)}
           description="Başarıyla tahsil edilen tutar"
-          accentClass="text-emerald-500 bg-emerald-500/10"
+          accentClass="text-emerald-500"
         />
         <StatCard
           icon={Layers}
@@ -84,8 +84,8 @@ export default function DashboardHome() {
           description="Eşik seviyenin altındaki parçalar"
           accentClass={
             criticalStockItems > 0
-              ? "text-[var(--danger)] bg-[var(--danger-light)]"
-              : "text-[var(--text-secondary)] bg-[var(--border-color-light)]"
+              ? "text-[var(--danger)]"
+              : "text-[var(--text-secondary)]"
           }
         />
       </div>

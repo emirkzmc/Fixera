@@ -25,8 +25,8 @@ export function EmptyState({
       transition={{ duration: 0.4 }}
       className="flex flex-col items-center justify-center py-16 px-6 text-center"
     >
-      <div className="w-16 h-16 rounded-2xl bg-[var(--accent-light)] flex items-center justify-center mb-5">
-        <Icon size={28} className="text-[var(--accent)]" />
+      <div className="flex items-center justify-center mb-4">
+        <Icon size={40} className="text-[var(--accent)]" />
       </div>
 
       <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">{title}</h3>

@@ -123,7 +123,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setIsTermsOpen(true)}
-                  className="underline hover:text-[var(--accent)] transition-colors focus:outline-none"
+                  className="underline hover:text-[var(--accent)] transition-colors focus:outline-none cursor-pointer"
                 >
                   Şartlar ve Koşulları
                 </button>{" "}

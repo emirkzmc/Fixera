@@ -35,3 +35,14 @@ export function useUpdateProfilePhotoMutation() {
     },
   });
 }
+
+export function useDeleteProfilePhotoMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => authApi.deleteProfilePhoto(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: authKeys.me() });
+    },
+  });
+}

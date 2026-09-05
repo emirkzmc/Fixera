@@ -65,8 +65,8 @@ export default function TrackJobPage() {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-slate-100">
         {/* Header with gradient */}
         <div className="bg-linear-to-br from-[var(--accent-light)] to-white px-6 py-8 border-b border-[var(--accent-light)] text-center">
-          <div className="w-12 h-12 bg-[var(--accent-light)] rounded-full flex items-center justify-center mx-auto mb-3">
-            <Package className="w-6 h-6 text-[var(--accent)]" />
+          <div className="flex items-center justify-center mx-auto mb-3">
+            <Package className="w-8 h-8 text-[var(--accent)]" />
           </div>
           <h1 className="text-xl font-bold text-slate-800 mb-1">Cihaz Takip</h1>
           <p className="text-sm font-medium text-slate-500 uppercase tracking-wider">

@@ -128,7 +128,7 @@ export function CreateJobModal({ isOpen, onClose }: CreateJobModalProps) {
             placeholder="Arıza detaylarını yazınız..."
             value={issueDescription}
             onChange={(e) => setIssueDescription(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/50 focus:border-[var(--accent)] transition-all min-h-[100px] resize-y"
+            className="w-full px-4 py-3 rounded-lg border border-(--border-color) bg-(--card-bg) text-(--text-primary) placeholder:text-(--text-tertiary) focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/50 focus:border-[var(--accent)] transition-all min-h-[100px] resize-y"
           />
         </div>
 

@@ -9,7 +9,10 @@ function makeQueryClient() {
       },
     }),
     queryCache: new QueryCache({
-      onError: (error) => {
+      onError: (error, query) => {
+        // Eğer query'nin meta bilgisinde "suppressErrorToast" true ise toast çıkarma!
+        if (query.meta?.suppressErrorToast) return;
+
         toast.error(error.message || 'Veri yüklenirken hata oluştu');
       },
     }),

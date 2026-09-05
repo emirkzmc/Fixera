@@ -59,8 +59,8 @@ export function FinanceSummaryWidget({ summary }: FinanceSummaryWidgetProps) {
         {/* Detailed items list */}
         <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[var(--border-color)]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500">
-              <TrendingUp size={18} />
+            <div className="flex items-center justify-center text-emerald-500">
+              <TrendingUp size={22} />
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] text-[var(--text-secondary)] font-semibold uppercase">Tahsil Edilen</span>
@@ -69,8 +69,8 @@ export function FinanceSummaryWidget({ summary }: FinanceSummaryWidgetProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
-              <Clock size={18} />
+            <div className="flex items-center justify-center text-amber-500">
+              <Clock size={22} />
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] text-[var(--text-secondary)] font-semibold uppercase">Bekleyen Ödeme</span>
